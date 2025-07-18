@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug FastAPI (Uvicorn)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "bootstrapper.bootstrapper:app",
+        "--reload",
+        "--app-dir", "src"
+      ],
+      "cwd": "${workspaceFolder}",
+      "jinja": true,
+      "console": "integratedTerminal",
+      "justMyCode": false
+    }
+  ]
+}

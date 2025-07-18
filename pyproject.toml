@@ -1,0 +1,31 @@
+[project]
+name = "modular-monolith"
+version = "0.1.0"
+description = "modular monolith templte in python"
+authors = [
+    {name = "rossifed",email = "rossifed@hotmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi (>=0.115.14,<0.116.0)",
+    "uvicorn (>=0.35.0,<0.36.0)",
+    "pydantic (>=2.11.7,<3.0.0)",
+    "dependency-injector (>=4.48.1,<5.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+packages = [
+    { include = "bootstrapper", from = "src" },
+    { include = "shared", from = "src" },
+    { include = "market_data", from = "src/modules" }
+]
+
+
+[tool.poetry.plugins."modules"]
+market_data = "modules.market_data.api"
