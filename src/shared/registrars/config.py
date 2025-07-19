@@ -3,7 +3,7 @@ import pkgutil
 import inspect
 from typing import List, Any
 from shared.registrars.abstractions import ComponentRegistrar
-from shared.logging.abstractions import Logger
+from shared.logging import Logger
 
 
 def register_components(

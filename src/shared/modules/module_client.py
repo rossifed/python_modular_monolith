@@ -1,5 +1,5 @@
 import asyncio
-from shared.modules.abstractions import ModuleClient, ModuleRegistry
+from shared.modules import ModuleClient, ModuleRegistry
 
 
 class DefaultModuleClient(ModuleClient):

@@ -1,9 +1,11 @@
 
 import inspect
-from shared.modules.module_registry import DefaultModuleRegistry
-from shared.modules.module_client import DefaultModuleClient
-from shared.di.abstractions import DIContainer
-from shared.modules.abstractions import ModuleRegistry, ModuleClient
+from shared.modules import (
+    DefaultModuleRegistry,
+    DefaultModuleClient,
+    ModuleRegistry,
+    ModuleClient)
+from shared.di import DIContainer
 
 
 def register_handlers(registry: ModuleRegistry, module):

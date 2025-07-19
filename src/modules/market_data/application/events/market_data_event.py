@@ -1,8 +1,8 @@
 from shared.events.abstractions import Event
 from dataclasses import dataclass
+from market_data.application.dto import MarketDataDto
 
 
-@dataclass
+@dataclass(frozen=True)
 class MarketDataEvent(Event):
-    symbol: str
-    price: float
+    market_data: MarketDataDto

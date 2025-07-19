@@ -1,10 +1,10 @@
-from shared.dispatching.abstractions import Dispatcher as DispatcherProtocol
-from shared.commands.abstractions import Command
-from shared.events.abstractions import Event
-from shared.queries.abstractions import Query
-from shared.commands.command_dispatcher import CommandDispatcher
-from shared.events.default_event_dispatcher import EventDispatcher
-from shared.queries.dispatcher import QueryDispatcher
+from shared.dispatching import Dispatcher as DispatcherProtocol
+from shared.commands import Command
+from shared.events import Event
+from shared.queries import Query
+from shared.commands import CommandDispatcher
+from shared.events import EventDispatcher
+from shared.queries import QueryDispatcher
 
 
 class DefaultDispatcher(DispatcherProtocol):

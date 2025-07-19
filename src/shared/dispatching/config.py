@@ -1,11 +1,10 @@
 # shared/dispatching/config.py
 
-from shared.di.abstractions import DIContainer
-from shared.dispatching.default_dispatcher import DefaultDispatcher
-from shared.dispatching.abstractions import Dispatcher
-from shared.commands.abstractions import CommandDispatcher
-from shared.queries.abstractions import QueryDispatcher
-from shared.events.abstractions import EventDispatcher
+from shared.di import DIContainer
+from shared.dispatching import DefaultDispatcher, Dispatcher
+from shared.commands import CommandDispatcher
+from shared.queries import QueryDispatcher
+from shared.events import EventDispatcher
 
 
 def configure_dispatching(container: DIContainer) -> None:

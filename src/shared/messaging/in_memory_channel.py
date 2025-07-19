@@ -1,10 +1,6 @@
 import asyncio
-from shared.messaging.abstractions import (
-    Message,
-    MessageBroker,
-    MessageChannel,
-    AsyncMessageDispatcher,
-)
+from shared.messaging import (
+    MessageChannel)
 
 
 class InMemoryMessageChannel(MessageChannel):
@@ -18,13 +14,3 @@ class InMemoryMessageChannel(MessageChannel):
     @property
     def reader(self) -> asyncio.Queue:
         return self._queue
-
-
-class InMemoryMessageBroker(MessageBroker):
-    def __init__(self, dispatcher: AsyncMessageDispatcher):
-        self._dispatcher = dispatcher
-
-    async def publish_async(self, *messages: Message) -> None:
-        valid_messages = [m for m in messages if m is not None]
-        tasks = [self._dispatcher.publish_async(m) for m in valid_messages]
-        await asyncio.gather(*tasks)

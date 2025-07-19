@@ -1,7 +1,7 @@
 from typing import Protocol, TypeVar
-from shared.commands.abstractions import Command
-from shared.events.abstractions import Event
-from shared.queries.abstractions import Query
+from shared.commands import Command
+from shared.events import Event
+from shared.queries import Query
 
 TResult = TypeVar("TResult")
 

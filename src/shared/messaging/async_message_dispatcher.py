@@ -1,4 +1,4 @@
-from shared.messaging.abstractions import (
+from shared.messaging import (
     AsyncMessageDispatcher,
     MessageChannel,
     Message,

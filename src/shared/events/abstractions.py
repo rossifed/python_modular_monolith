@@ -1,5 +1,5 @@
 from typing import Protocol, runtime_checkable, TypeVar, Generic
-from shared.messaging.abstractions import Message
+from shared.messaging import Message
 
 # Définition générique d'un type de evente
 E = TypeVar("E", bound="Event")

@@ -1,13 +1,12 @@
 from shared.di.abstractions import DIContainer
-from shared.messaging.abstractions import (MessageChannel,
-                                           MessageBroker)
-from shared.messaging.in_memory_channel import (
+from shared.messaging import (
+    MessageChannel,
+    MessageBroker,
     InMemoryMessageBroker,
-    InMemoryMessageChannel
+    InMemoryMessageChannel,
+    DefaultAsyncMessageDispatcher,
+    AsyncMessageDispatcher
 )
-from shared.messaging.async_message_dispatcher import (
-    DefaultAsyncMessageDispatcher)
-from shared.messaging.abstractions import AsyncMessageDispatcher
 
 
 def configure_messaging(container: DIContainer) -> None:

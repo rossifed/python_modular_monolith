@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from typing import Protocol, runtime_checkable
-from shared.di.abstractions import DIContainer
+from shared.di import DIContainer
 from typing import Callable, Type, Optional, Any
 
 

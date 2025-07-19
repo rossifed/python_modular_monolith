@@ -1,9 +1,9 @@
 import inspect
 from typing import List, Any
-from shared.di.abstractions import DIContainer
-from shared.queries.abstractions import QueryHandler
+from shared.di import DIContainer
+from shared.queries import QueryHandler
 from shared.registrars.abstractions import ComponentRegistrar
-from shared.logging.abstractions import Logger
+from shared.logging import Logger
 
 
 class QueryHandlerRegistrar(ComponentRegistrar):

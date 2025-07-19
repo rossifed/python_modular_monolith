@@ -1,5 +1,5 @@
 import logging
-from shared.logging.abstractions import Logger
+from shared.logging import Logger
 
 
 class DefaultLogger(Logger):

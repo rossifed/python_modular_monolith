@@ -1,5 +1,5 @@
-from shared.di.abstractions import DIContainer
-from shared.commands.abstractions import Command, CommandDispatcher
+from shared.di import DIContainer
+from shared.commands import Command, CommandDispatcher
 
 
 class DefaultCommandDispatcher(CommandDispatcher):

@@ -1,8 +1,8 @@
 
 
-from shared.di.abstractions import DIContainer
-from shared.events.abstractions import EventDispatcher
-from shared.events.default_event_dispatcher import DefaultEventDispatcher
+from shared.di import DIContainer
+from shared.events import EventDispatcher
+from shared.events import DefaultEventDispatcher
 
 
 def configure_events(container: DIContainer):

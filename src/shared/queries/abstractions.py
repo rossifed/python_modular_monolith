@@ -1,5 +1,5 @@
 from typing import Protocol, runtime_checkable, TypeVar, Generic
-from shared.messaging.abstractions import Message
+from shared.messaging import Message
 
 R = TypeVar("Result")
 Q = TypeVar("Q", bound="Query[R]")

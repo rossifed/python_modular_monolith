@@ -1,7 +1,7 @@
 
 from collections import defaultdict
 from typing import Callable, Type, Dict, List
-from shared.modules.abstractions import ModuleRegistry
+from shared.modules import ModuleRegistry
 
 
 class DefaultModuleRegistry(ModuleRegistry):

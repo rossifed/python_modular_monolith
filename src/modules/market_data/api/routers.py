@@ -1,8 +1,10 @@
 from fastapi import APIRouter, FastAPI, Depends
 from shared.dispatching.abstractions import Dispatcher
-from market_data.application.commands import CreateUserCommand
+from market_data.application.commands import CreateMarketData
 from market_data.application.queries import HelloQuery
 from shared.di.fastapi import inject
+from market_data.application.dto import MarketDataRequestDto
+
 
 MODULE_CONFIG = {
     "prefix": "/api/market-data",
@@ -29,11 +31,10 @@ async def say_hello(
 
 @router.post("/create-market-data")
 async def create_order(
-    symbol: str,
-    quantity: int,
+    dto: MarketDataRequestDto,
     dispatcher: Dispatcher = Depends(inject(Dispatcher))
 ):
-    command = CreateUserCommand("aaa")  # à remplacer par un vrai DTO
+    command = CreateMarketData(dto.symbol, dto.price)
     await dispatcher.send_async(command)
     return {"status": "ok"}
 

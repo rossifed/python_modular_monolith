@@ -1,5 +1,5 @@
-from shared.di.abstractions import DIContainer
-from shared.events.abstractions import Event, EventDispatcher
+from shared.di import DIContainer
+from shared.events import Event, EventDispatcher
 
 
 class DefaultEventDispatcher(EventDispatcher):

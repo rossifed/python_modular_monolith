@@ -1,19 +1,16 @@
 import asyncio
 from fastapi import FastAPI
-from shared.modules.module_loader import ModuleLoader
+from shared.modules import ModuleLoader, configure_modules, ModuleClient
 from shared.app_container import get_container
-from shared.messaging.config import configure_messaging
-from shared.modules.config import configure_modules
-from shared.events.config import configure_events
-from shared.commands.config import configure_commands
-from shared.queries.config import configure_queries
-from shared.middleware.config import register_middleware
-from shared.dispatching.config import configure_dispatching
-from shared.messaging.abstractions import MessageChannel
-from shared.messaging.async_dispatcher_job import AsyncDispatcherJob
-from shared.modules.module_client import ModuleClient
-from shared.logging.config import configure_logging
-from shared.logging.abstractions import Logger
+from shared.messaging import (configure_messaging,
+                              MessageChannel,
+                              AsyncDispatcherJob)
+from shared.events import configure_events
+from shared.commands import configure_commands
+from shared.queries import configure_queries
+from shared.middleware import register_middleware
+from shared.dispatching import configure_dispatching
+from shared.logging import configure_logging, Logger
 
 
 def load_modular_infrastructure(app: FastAPI):
@@ -40,7 +37,7 @@ def load_modular_infrastructure(app: FastAPI):
     async def start_dispatcher():
         channel = container.resolve(MessageChannel)
         client = container.resolve(ModuleClient)
-        job = AsyncDispatcherJob(channel, client, logger)
+        job = AsyncDispatcherJob(channel, client, logger, container)
         app.state.dispatcher_job = job
 
         app.state.dispatcher_task = asyncio.create_task(job.start())

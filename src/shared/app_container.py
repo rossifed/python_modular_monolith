@@ -1,6 +1,5 @@
 from dependency_injector.containers import DeclarativeContainer
-from shared.di.container import DependencyInjectorContainer
-from shared.di.abstractions import DIContainer
+from shared.di.container import DIContainer, DependencyInjectorContainer
 
 
 class AppContainer(DeclarativeContainer):

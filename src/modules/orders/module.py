@@ -1,13 +1,12 @@
 from fastapi import FastAPI
 from shared.di.abstractions import DIContainer
-from orders.application.command_handlers import CreateOrderHandler
-from orders.application.commands import CreateOrderCommand
-from orders.application.events.market_data_event_handler import (
-    MarketDataEventHandler)
-from orders.application.events.market_data_event import MarketDataEvent
+from orders.application.commands import CreateOrder
+from orders.application.commands.handlers import CreateOrderHandler
+from orders.application.events.handlers import MarketDataEventHandler
+from orders.application.events import MarketDataEvent
 from shared.modules.abstractions import HandlerRegistrar
-from orders.application.queries import OrderQuery
-from orders.application.query_handlers import OrderQueryHandler
+from orders.application.queries.order_query import OrderQuery
+from orders.application.queries.handlers import OrderQueryHandler
 
 
 class OrdersModule:
@@ -17,7 +16,7 @@ class OrdersModule:
 
     def register_services(self, container: DIContainer) -> None:
         print(f"✅ Services registered for module '{self.name}'")
-        container.add_scoped(CreateOrderCommand, CreateOrderHandler)
+        container.add_scoped(CreateOrder, CreateOrderHandler)
         container.add_scoped(OrderQuery, OrderQueryHandler)
 
     def register_handlers(self, hander_registration: HandlerRegistrar) -> None:

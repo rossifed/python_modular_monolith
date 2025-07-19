@@ -1,6 +1,6 @@
 from fastapi import APIRouter, FastAPI, Depends
 from shared.dispatching.abstractions import Dispatcher
-from orders.application.commands import CreateOrderCommand
+from orders.application.commands import CreateOrder
 from orders.application.queries import OrderQuery
 from shared.di.fastapi import inject
 
@@ -34,7 +34,7 @@ async def create_order(
     quantity: int,
     dispatcher: Dispatcher = Depends(inject(Dispatcher))
 ):
-    command = CreateOrderCommand("aaa")  # à adapter plus tard avec un vrai DTO
+    command = CreateOrder("BTCUSD", 32)  # à adapter plus tard avec un vrai DTO
     await dispatcher.send_async(command)
     return {"status": "ok"}
 

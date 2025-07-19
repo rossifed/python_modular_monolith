@@ -1,6 +1,6 @@
-from shared.logging.abstractions import Logger
-from shared.di.abstractions import DIContainer
-from shared.logging.default_logger import DefaultLogger
+from shared.logging import Logger
+from shared.di import DIContainer
+from shared.logging import DefaultLogger
 import logging
 
 

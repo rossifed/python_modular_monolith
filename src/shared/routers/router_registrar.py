@@ -1,7 +1,7 @@
 import importlib
 from typing import List, Any, Optional
 from fastapi import APIRouter, FastAPI
-from shared.logging.abstractions import Logger
+from shared.logging import Logger
 
 
 class RouterRegistrar:

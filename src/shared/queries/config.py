@@ -1,6 +1,5 @@
 from shared.di.abstractions import DIContainer
-from shared.queries.abstractions import QueryDispatcher
-from shared.queries.dispatcher import DefaultQueryDispatcher
+from shared.queries import QueryDispatcher, DefaultQueryDispatcher
 
 
 def configure_queries(container: DIContainer):

@@ -1,9 +1,9 @@
 import inspect
 from typing import List, Any
-from shared.di.abstractions import DIContainer
-from shared.events.abstractions import EventHandler
+from shared.di import DIContainer
+from shared.events import EventHandler
 from shared.registrars.abstractions import ComponentRegistrar
-from shared.logging.abstractions import Logger
+from shared.logging import Logger
 
 
 class EventHandlerRegistrar(ComponentRegistrar):

@@ -4,12 +4,12 @@ from market_data.application.services.market_data_service import (
     MarketDataService,
     DummyMarketDataService
 )
-from market_data.application.query_handlers import HelloQueryHandler
+from market_data.application.queries.handlers import HelloQueryHandler
 from market_data.application.queries import HelloQuery
 from shared.messaging.abstractions import MessageBroker
 from shared.logging.abstractions import Logger
-from market_data.application.command_handlers import CreateUserHandler
-from market_data.application.commands import CreateUserCommand
+from market_data.application.commands.handlers import CreateMarketDataHandler
+from market_data.application.commands import CreateMarketData
 from shared.modules.abstractions import HandlerRegistrar
 
 
@@ -27,8 +27,8 @@ class MarketDataModule:
 
     def register_handlers(self, handler_registrar: HandlerRegistrar) -> None:
         handler_registrar.register(HelloQuery, HelloQueryHandler)
-        handler_registrar.register(CreateUserCommand,
-                                   lambda c: CreateUserHandler(
+        handler_registrar.register(CreateMarketData,
+                                   lambda c: CreateMarketDataHandler(
                                     c.resolve(MarketDataService),
                                     c.resolve(Logger)
                                     ))

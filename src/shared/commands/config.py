@@ -1,6 +1,6 @@
-from shared.di.abstractions import DIContainer
-from shared.commands.abstractions import CommandDispatcher
-from shared.commands.command_dispatcher import DefaultCommandDispatcher
+from shared.di import DIContainer
+from shared.commands import CommandDispatcher
+from shared.commands import DefaultCommandDispatcher
 
 
 def configure_commands(container: DIContainer):
