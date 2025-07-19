@@ -11,8 +11,8 @@ class DefaultModuleRegistry(ModuleRegistry):
             List[Callable]
             ] = defaultdict(list)
 
-    def add_broadcast_handler(self, message_type: Type, handler: Callable):
-        self._broadcast_handlers[message_type].append(handler)
+    def add_broadcast_handler(self, key: str, handler: Callable):
+        self._broadcast_handlers[key].append(handler)
 
-    def get_broadcast_handlers(self, message_type: Type):
-        return self._broadcast_handlers.get(message_type, [])
+    def get_broadcast_handlers(self, key: str):
+        return self._broadcast_handlers.get(key, [])

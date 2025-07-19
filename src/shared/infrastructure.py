@@ -1,6 +1,6 @@
 import asyncio
 from fastapi import FastAPI
-from shared.modules.loading import load_modules
+from shared.modules.module_loader import ModuleLoader
 from shared.app_container import get_container
 from shared.messaging.config import configure_messaging
 from shared.modules.config import configure_modules
@@ -34,7 +34,8 @@ def load_modular_infrastructure(app: FastAPI):
     configure_queries(container)
     configure_events(container)
     configure_dispatching(container)
-    load_modules(app, container, logger)
+    loader = ModuleLoader(app, container, logger)
+    loader.load()
 
     async def start_dispatcher():
         channel = container.resolve(MessageChannel)

@@ -18,19 +18,19 @@ class MarketDataModule:
         self.name = "market_data"
         self.enabled = True
 
-    def register(self, container: DIContainer,
-                 handler_registrar: HandlerRegistrar) -> None:
-        print(f"✅ Services registered for module '{self.name}'")
+    def register_services(self, container: DIContainer) -> None:
         container.add_singleton(MarketDataService,
                                 lambda: DummyMarketDataService(
                                     container.resolve(MessageBroker),
                                     container.resolve(Logger)
                                 ))
+
+    def register_handlers(self, handler_registrar: HandlerRegistrar) -> None:
         handler_registrar.register(HelloQuery, HelloQueryHandler)
         handler_registrar.register(CreateUserCommand,
-                                   lambda: CreateUserHandler(
-                                    container.resolve(MarketDataService),
-                                    container.resolve(Logger)
+                                   lambda c: CreateUserHandler(
+                                    c.resolve(MarketDataService),
+                                    c.resolve(Logger)
                                     ))
 
     def boot(self, app: FastAPI) -> None:

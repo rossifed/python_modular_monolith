@@ -1,17 +1,19 @@
 from shared.di.abstractions import T, Scope
 from typing import Dict, Any
 from typing import Type
+from shared.di.abstractions import DIContainer
 
 
 class ServiceScope(Scope):
-    """Contexte pour gérer les instances scoped d'une requête"""
-    def __init__(self):
+    def __init__(self, container: DIContainer):  # ← Ajouter container
         self._instances: Dict[Type, Any] = {}
+        self._container = container  # ← Stocker le container
 
-    def get_or_create(self, service_type: Type[T], factory: Type[T]) -> T:
+    def get_or_create(self, service_type: Type[T], factory: Any) -> T:
         if service_type not in self._instances:
-            self._instances[service_type] = factory()
+            if callable(factory) and not isinstance(factory, type):
+                # ← Passer le container à la factory
+                self._instances[service_type] = factory(self._container)
+            else:
+                self._instances[service_type] = factory()
         return self._instances[service_type]
-
-    def clear(self):
-        self._instances.clear()

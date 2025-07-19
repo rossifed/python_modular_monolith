@@ -15,13 +15,14 @@ class OrdersModule:
         self.name = "orders"
         self.enabled = True
 
-    def register(self, container: DIContainer,
-                 hander_registration: HandlerRegistrar) -> None:
+    def register_services(self, container: DIContainer) -> None:
         print(f"✅ Services registered for module '{self.name}'")
-        hander_registration.register(MarketDataEvent, MarketDataEventHandler)
-        hander_registration.register(MarketDataEvent, MarketDataEventHandler)
         container.add_scoped(CreateOrderCommand, CreateOrderHandler)
         container.add_scoped(OrderQuery, OrderQueryHandler)
+
+    def register_handlers(self, hander_registration: HandlerRegistrar) -> None:
+        print(f"✅ Services registered for module '{self.name}'")
+        hander_registration.register(MarketDataEvent, MarketDataEventHandler)
 
     def boot(self, app: FastAPI) -> None:
         """Initialisation du module"""

@@ -1,14 +1,15 @@
 from fastapi import FastAPI
 from typing import Protocol, runtime_checkable
 from shared.di.abstractions import DIContainer
-from typing import Callable, Type
+from typing import Callable, Type, Optional, Any
 
 
 @runtime_checkable
 class HandlerRegistrar(Protocol):
     def register(self, message_type: Type,
                  handler_type: Type,
-                 factory: Callable[[], any] = ...) -> None:
+                 factory: Optional[Callable[[DIContainer], Any]] = None
+                 ) -> None:
         ...
 
 
@@ -17,8 +18,13 @@ class Module(Protocol):
     name: str
     enabled: bool  # indique si le module est actif ou non
 
-    def register(self, container: DIContainer,
-                 handler_registration: HandlerRegistrar) -> None:
+    def register_services(self,
+                          container: DIContainer) -> None:
+        """Registration of module services"""
+        ...
+
+    def register_handlers(self,
+                          handler_registration: HandlerRegistrar) -> None:
         """Registration of module services"""
         ...
 
@@ -29,10 +35,10 @@ class Module(Protocol):
 
 class ModuleRegistry(Protocol):
 
-    def add_broadcast_handler(self, message_type: Type, handler: Callable):
+    def add_broadcast_handler(self, key: str, handler: Callable):
         ...
 
-    def get_broadcast_handlers(self, message_type: Type):
+    def get_broadcast_handlers(self, key: str):
         ...
 
 

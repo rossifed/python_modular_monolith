@@ -1,6 +1,6 @@
 from shared.di.abstractions import DIContainer
 from shared.modules.abstractions import ModuleRegistry, HandlerRegistrar
-from typing import Type, Callable, Any
+from typing import Type, Callable, Any, Optional
 
 
 class HandlerRegistration(HandlerRegistrar):
@@ -10,10 +10,12 @@ class HandlerRegistration(HandlerRegistrar):
 
     def register(self, message_type: Type,
                  handler_type: Type,
-                 factory: Callable[[], Any] = None):
+                 factory: Optional[Callable[[DIContainer], Any]] = None
+                 ) -> None:
         # 1. Enregistrement dans le container avec factory si fournie
         if factory is not None:
-            self._container.add_scoped(message_type, factory)
+            self._container.add_scoped(message_type,
+                                       factory(self._container))
         else:
             self._container.add_scoped(message_type, handler_type)
 
@@ -22,4 +24,5 @@ class HandlerRegistration(HandlerRegistrar):
             instance = self._container.resolve(message_type)
             return await instance.handle(message)
 
-        self._registry.add_broadcast_handler(message_type, handler_function)
+        self._registry.add_broadcast_handler(message_type.__name__,
+                                             handler_function)
